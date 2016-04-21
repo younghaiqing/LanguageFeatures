@@ -134,8 +134,17 @@ namespace LanguageFeatures
             //    return "No Value";
             //}
 
-            ValueContainer<string> stringContainer = new ValueContainer<string> { Value = "Hello" };
-            return String.Format("char:{0}",stringContainer.Value );
+            //初始化泛型来赋值
+            //ValueContainer<string> stringContainer = new ValueContainer<string> { Value = "Hello" };
+            //return String.Format("char:{0}",stringContainer.Value );
+
+            TimeProvider provider = new TimeProvider();
+            IMonthProvider monthProvider = (IMonthProvider)provider;
+            IYearProvider yearProvider = (IYearProvider)provider;
+
+            return string.Format("Month:{0},Year:{1}",monthProvider.GetCurrent1(),yearProvider.GetCurrent());
+
+
             
         }
     }
