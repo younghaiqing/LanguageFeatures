@@ -12,14 +12,14 @@ namespace LanguageFeatures
         /// </summary>
         /// <param name="cartParam">购物的种类</param>
         /// <returns>总价格</returns>
-        public static decimal TotalPrices1(this ShoppingCart cartParam, int a)
+        public static decimal TotalPrices1(this ShoppingCart cartParam, int b)
         {
             decimal total = 0;
             foreach (Product prod in cartParam.Products)
             {
                 total += prod.Price;
             }
-            return total * a;
+            return total * b;
         }
 
         #endregion 该方法为拓展方法（this ），class必须为静态，方法也为静态
@@ -58,7 +58,13 @@ namespace LanguageFeatures
 
         }
 
-        public static IEnumerable<Product> Filter(this IEnumerable<Product> productEnum,Func<Product,bool> selectorParam)
+        /// <summary>
+        /// 条件过滤
+        /// </summary>
+        /// <param name="productEnum">所有的实体</param>
+        /// <param name="selectorParam">过滤信息</param>
+        /// <returns>符合条件的信息</returns>
+        public static IEnumerable<Product> Filter(this IEnumerable<Product> productEnum, Func<Product,bool> selectorParam)
         {
             foreach (Product prod in productEnum)
             {
