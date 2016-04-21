@@ -37,4 +37,13 @@ namespace LanguageFeatures
         }
     }
 
+    //使用泛型参数，解决了重复使用的问题，避免转换问题带来了风险，可以简化代码，提高维护性和稳定性。
+    public class ValueContainer<T> 
+    {
+        public T Value { get; set; }
+        public bool HasValue {
+            get { return Value != null; }
+        }
+    }
+
 }

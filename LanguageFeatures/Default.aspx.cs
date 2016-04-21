@@ -120,19 +120,22 @@ namespace LanguageFeatures
             //}
 
 
-            BaseContainer stringContainer = new BaseContainer();
-            stringContainer.Value = "Hello11";
-            BaseContainer dtContainer = new BaseContainer();
-            dtContainer.Value = DateTime.Now;
+            //BaseContainer stringContainer = new BaseContainer();
+            //stringContainer.Value = "Hello11";
+            //BaseContainer dtContainer = new BaseContainer();
+            //dtContainer.Value = DateTime.Now;
 
-            if (stringContainer.HasValue && dtContainer.HasValue)
-            {
-                return String.Format("char:{0},year:{1}", (string)stringContainer.Value, ((DateTime)dtContainer.Value).Year);
-            }
-            else
-            {
-                return "No Value";
-            }
+            //if (stringContainer.HasValue && dtContainer.HasValue)
+            //{
+            //    return String.Format("char:{0},year:{1}", (string)stringContainer.Value, ((DateTime)dtContainer.Value).Year);
+            //}
+            //else
+            //{
+            //    return "No Value";
+            //}
+
+            ValueContainer<string> stringContainer = new ValueContainer<string> { Value = "Hello" };
+            return String.Format("char:{0}",stringContainer.Value );
             
         }
     }
