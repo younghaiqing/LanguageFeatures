@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace LanguageFeatures
 {
@@ -13,7 +14,7 @@ namespace LanguageFeatures
         /// 《精通asp.net4.5》书40页之前的内容
         /// </summary>
         /// <returns></returns>
-        protected string GetMessage1()
+        protected string GetMessage12()
         {
             #region 构建和初始化包含属性的对象
 
@@ -61,8 +62,11 @@ namespace LanguageFeatures
             #endregion 应用拓展方法
         }
 
-        public string GetMessage()
+        public string GetMessage1()
         {
+            #region 精通ASP.NET    49页之前的方法
+            
+         
             IEnumerable<Product> products = new ShoppingCart { Products = new List<Product> { new Product { Name = "Young", Price = 245, Category = "watersports" }, new Product { Name = "wang", Price = 165, Category = "watersports" }, new Product { Name = "san", Price = 621, Category = "Soccer" } } };
             Product[] productArray = { new Product { Name = "XING", Price = 120 }, new Product { Name = "EDASS", Price = 1120 }, new Product { Name = "XVEDD", Price = 120 } };
             decimal cartTotal = products.TotalPrices();
@@ -74,12 +78,62 @@ namespace LanguageFeatures
             //    return prod.Category == "Soccer";
             //};
             //过滤方法2 ：lambda 替换委托定义
-            // Func<Product, bool> categoryFiler = prod => prod.Category == "Soccer";
-            // decimal total= products.Filter(categoryFiler).TotalPrices();
-            //过滤方法2 ：lambda 没有Func
-            decimal total = products.Filter(prod => prod.Category == "Soccer"||prod.Price>20).TotalPrices();
+            //Func<Product, bool> categoryFiler = prod => prod.Category == "Soccer";
 
-            return string.Format("Cart Total:{0},Array Total:{1},yield  Soccer Total:{2},filer Total:{3}", cartTotal, arrayTotal, yieldCartTotal, total);
+            //decimal total = products.Filter(categoryFiler).TotalPrices();
+            //过滤方法2 ：lambda 没有Func       
+
+
+            decimal total = products.Filter(prod => prod.Category == "Soccer" || prod.Price > 20).TotalPrices();
+         //  return string.Format("Cart Total:{0},Array Total:{1},yield  Soccer Total:{2},filer Total:{3}", cartTotal, arrayTotal, yieldCartTotal, total);        
+            #endregion
+
+            //创建匿名类型
+            var myAnonType = new { Name = "YOUNG", Category = "Watersports" };
+          //  return string.Format("Name:{0}, Type:{1}",myAnonType.Name,myAnonType.Category);
+
+            //使用匿名类型创建对象数组
+            var oddsAndEnds = new[] { new { Name = "blue", category = "color" },
+                new { Name = "hat", category = "clothing" },
+                new { Name = "apple", category = "fruit" } };
+            StringBuilder result = new StringBuilder();
+            foreach (var item in oddsAndEnds)
+            {
+                result.Append(item.Name).Append("  ");
+            }
+            return result.ToString();
+        }
+
+        public string GetMessage()
+        {
+            //StringContainer stringContainer = new StringContainer();
+            //stringContainer.Value = "Hello";
+            //DateTimeContainer dtContainer = new DateTimeContainer();
+            //dtContainer.Value = DateTime.Now;
+            //if (stringContainer.HasValue && dtContainer.HasValue)
+            //{
+            //    return String.Format("char:{0},year:{1}", stringContainer.Value, dtContainer.Value.Year);
+            //}
+            //else
+            //{
+            //    return "No Value";
+            //}
+
+
+            BaseContainer stringContainer = new BaseContainer();
+            stringContainer.Value = "Hello11";
+            BaseContainer dtContainer = new BaseContainer();
+            dtContainer.Value = DateTime.Now;
+
+            if (stringContainer.HasValue && dtContainer.HasValue)
+            {
+                return String.Format("char:{0},year:{1}", (string)stringContainer.Value, ((DateTime)dtContainer.Value).Year);
+            }
+            else
+            {
+                return "No Value";
+            }
+            
         }
     }
 }
